@@ -21,16 +21,9 @@ enum color {
 	RED, BLACK
 };
 
-/*
-
- * Node RBTree Declaration
-
- */
-
 typedef struct rbtree_node
 
 {
-
 	enum color color;
 
 	void *key;
@@ -39,21 +32,15 @@ typedef struct rbtree_node
 
 	rbtree_node *left, *right, *parent;
 
-}*node;
+}*Node;
 
 typedef struct rbtree_t
 
 {
 
-	node root;
+	Node root;
 
 }*rbtree;
-
-/*
-
- * Class RBTree Declaration
-
- */
 
 class RBTree
 
@@ -71,59 +58,59 @@ public:
 
 	void rbtree_delete(rbtree t, void*, compare_func compare);
 
-	node grandparent(node n);
+	Node grandparent(Node n);
 
-	node sibling(node n);
+	Node sibling(Node n);
 
-	node uncle(node n);
+	Node uncle(Node n);
 
 	void verify_properties(rbtree t);
 
-	void verify_property_1(node root);
+	void verify_property_1(Node root);
 
-	void verify_property_2(node root);
+	void verify_property_2(Node root);
 
-	color node_color(node n);
+	color node_color(Node n);
 
-	void verify_property_4(node root);
+	void verify_property_4(Node root);
 
-	void verify_property_5(node root);
+	void verify_property_5(Node root);
 
-	void verify_property_5_helper(node n, int, int*);
+	void verify_property_5_helper(Node n, int, int*);
 
-	node new_node(void* key, void*, color, node, node);
+	Node new_node(void* key, void*, color, Node, Node);
 
-	node lookup_node(rbtree t, void*, compare_func compare);
+	Node lookup_node(rbtree t, void*, compare_func compare);
 
-	void rotate_left(rbtree t, node n);
+	void rotate_left(rbtree t, Node n);
 
-	void rotate_right(rbtree t, node n);
+	void rotate_right(rbtree t, Node n);
 
-	void replace_node(rbtree t, node oldn, node newn);
+	void replace_node(rbtree t, Node oldn, Node newn);
 
-	void insert_case1(rbtree t, node n);
+	void insert_case1(rbtree t, Node n);
 
-	void insert_case2(rbtree t, node n);
+	void insert_case2(rbtree t, Node n);
 
-	void insert_case3(rbtree t, node n);
+	void insert_case3(rbtree t, Node n);
 
-	void insert_case4(rbtree t, node n);
+	void insert_case4(rbtree t, Node n);
 
-	void insert_case5(rbtree t, node n);
+	void insert_case5(rbtree t, Node n);
 
-	node maximum_node(node root);
+	Node maximum_node(Node root);
 
-	void delete_case1(rbtree t, node n);
+	void delete_case1(rbtree t, Node n);
 
-	void delete_case2(rbtree t, node n);
+	void delete_case2(rbtree t, Node n);
 
-	void delete_case3(rbtree t, node n);
+	void delete_case3(rbtree t, Node n);
 
-	void delete_case4(rbtree t, node n);
+	void delete_case4(rbtree t, Node n);
 
-	void delete_case5(rbtree t, node n);
+	void delete_case5(rbtree t, Node n);
 
-	void delete_case6(rbtree t, node n);
+	void delete_case6(rbtree t, Node n);
 
 };
 
@@ -133,7 +120,7 @@ public:
 
  */
 
-node RBTree::grandparent(node n)
+Node RBTree::grandparent(Node n)
 
 {
 
@@ -153,7 +140,7 @@ node RBTree::grandparent(node n)
 
  */
 
-node RBTree::sibling(node n)
+Node RBTree::sibling(Node n)
 
 {
 
@@ -177,7 +164,7 @@ node RBTree::sibling(node n)
 
  */
 
-node RBTree::uncle(node n)
+Node RBTree::uncle(Node n)
 
 {
 
@@ -217,7 +204,7 @@ void RBTree::verify_properties(rbtree t)
 
  */
 
-void RBTree::verify_property_1(node n)
+void RBTree::verify_property_1(Node n)
 
 {
 
@@ -239,7 +226,7 @@ void RBTree::verify_property_1(node n)
 
  */
 
-void RBTree::verify_property_2(node root)
+void RBTree::verify_property_2(Node root)
 
 {
 
@@ -253,7 +240,7 @@ void RBTree::verify_property_2(node root)
 
  */
 
-color RBTree::node_color(node n)
+color RBTree::node_color(Node n)
 
 {
 
@@ -267,7 +254,7 @@ color RBTree::node_color(node n)
 
  */
 
-void RBTree::verify_property_4(node n)
+void RBTree::verify_property_4(Node n)
 
 {
 
@@ -299,7 +286,7 @@ void RBTree::verify_property_4(node n)
 
  */
 
-void RBTree::verify_property_5(node root)
+void RBTree::verify_property_5(Node root)
 
 {
 
@@ -309,7 +296,7 @@ void RBTree::verify_property_5(node root)
 
 }
 
-void RBTree::verify_property_5_helper(node n, int black_count,
+void RBTree::verify_property_5_helper(Node n, int black_count,
 		int* path_black_count)
 
 		{
@@ -378,11 +365,11 @@ rbtree RBTree::rbtree_create()
 
  */
 
-node RBTree::new_node(void* k, void* v, color n_color, node left, node right)
+Node RBTree::new_node(void* k, void* v, color n_color, Node left, Node right)
 
 {
 
-	node result = new rbtree_node;
+	Node result = new rbtree_node;
 
 	result->key = k;
 
@@ -414,11 +401,11 @@ node RBTree::new_node(void* k, void* v, color n_color, node left, node right)
 
  */
 
-node RBTree::lookup_node(rbtree t, void* key, compare_func compare)
+Node RBTree::lookup_node(rbtree t, void* key, compare_func compare)
 
 {
 
-	node n = t->root;
+	Node n = t->root;
 
 	while (n != NULL)
 
@@ -468,7 +455,7 @@ void* RBTree::rbtree_lookup(rbtree t, void* key, compare_func compare)
 
 {
 
-	node n = lookup_node(t, key, compare);
+	Node n = lookup_node(t, key, compare);
 
 	return n == NULL ? NULL : n->value;
 
@@ -480,11 +467,11 @@ void* RBTree::rbtree_lookup(rbtree t, void* key, compare_func compare)
 
  */
 
-void RBTree::rotate_left(rbtree t, node n)
+void RBTree::rotate_left(rbtree t, Node n)
 
 {
 
-	node r = n->right;
+	Node r = n->right;
 
 	replace_node(t, n, r);
 
@@ -510,11 +497,11 @@ void RBTree::rotate_left(rbtree t, node n)
 
  */
 
-void RBTree::rotate_right(rbtree t, node n)
+void RBTree::rotate_right(rbtree t, Node n)
 
 {
 
-	node L = n->left;
+	Node L = n->left;
 
 	replace_node(t, n, L);
 
@@ -540,7 +527,7 @@ void RBTree::rotate_right(rbtree t, node n)
 
  */
 
-void RBTree::replace_node(rbtree t, node oldn, node newn)
+void RBTree::replace_node(rbtree t, Node oldn, Node newn)
 
 {
 
@@ -587,7 +574,7 @@ void RBTree::rbtree_insert(rbtree t, void* key, void* value,
 
 		{
 
-	node inserted_node = new_node(key, value, RED, NULL, NULL);
+	Node inserted_node = new_node(key, value, RED, NULL, NULL);
 
 	if (t->root == NULL)
 
@@ -601,7 +588,7 @@ void RBTree::rbtree_insert(rbtree t, void* key, void* value,
 
 	{
 
-		node n = t->root;
+		Node n = t->root;
 
 		while (1)
 
@@ -687,7 +674,7 @@ void RBTree::rbtree_insert(rbtree t, void* key, void* value,
 
  */
 
-void RBTree::insert_case1(rbtree t, node n)
+void RBTree::insert_case1(rbtree t, Node n)
 
 {
 
@@ -707,7 +694,7 @@ void RBTree::insert_case1(rbtree t, node n)
 
  */
 
-void RBTree::insert_case2(rbtree t, node n)
+void RBTree::insert_case2(rbtree t, Node n)
 
 {
 
@@ -727,7 +714,7 @@ void RBTree::insert_case2(rbtree t, node n)
 
  */
 
-void RBTree::insert_case3(rbtree t, node n)
+void RBTree::insert_case3(rbtree t, Node n)
 
 {
 
@@ -761,7 +748,7 @@ void RBTree::insert_case3(rbtree t, node n)
 
  */
 
-void RBTree::insert_case4(rbtree t, node n)
+void RBTree::insert_case4(rbtree t, Node n)
 
 {
 
@@ -795,7 +782,7 @@ void RBTree::insert_case4(rbtree t, node n)
 
  */
 
-void RBTree::insert_case5(rbtree t, node n)
+void RBTree::insert_case5(rbtree t, Node n)
 
 {
 
@@ -833,9 +820,9 @@ void RBTree::rbtree_delete(rbtree t, void* key, compare_func compare)
 
 {
 
-	node child;
+	Node child;
 
-	node n = lookup_node(t, key, compare);
+	Node n = lookup_node(t, key, compare);
 
 	if (n == NULL)
 
@@ -845,7 +832,7 @@ void RBTree::rbtree_delete(rbtree t, void* key, compare_func compare)
 
 	{
 
-		node pred = maximum_node(n->left);
+		Node pred = maximum_node(n->left);
 
 		n->key = pred->key;
 
@@ -883,7 +870,7 @@ void RBTree::rbtree_delete(rbtree t, void* key, compare_func compare)
 
  */
 
-node RBTree::maximum_node(node n)
+Node RBTree::maximum_node(Node n)
 
 {
 
@@ -907,7 +894,7 @@ node RBTree::maximum_node(node n)
 
  */
 
-void RBTree::delete_case1(rbtree t, node n)
+void RBTree::delete_case1(rbtree t, Node n)
 
 {
 
@@ -927,7 +914,7 @@ void RBTree::delete_case1(rbtree t, node n)
 
  */
 
-void RBTree::delete_case2(rbtree t, node n)
+void RBTree::delete_case2(rbtree t, Node n)
 
 {
 
@@ -959,7 +946,7 @@ void RBTree::delete_case2(rbtree t, node n)
 
  */
 
-void RBTree::delete_case3(rbtree t, node n)
+void RBTree::delete_case3(rbtree t, Node n)
 
 {
 
@@ -988,7 +975,7 @@ void RBTree::delete_case3(rbtree t, node n)
 
  */
 
-void RBTree::delete_case4(rbtree t, node n)
+void RBTree::delete_case4(rbtree t, Node n)
 
 {
 
@@ -1017,7 +1004,7 @@ void RBTree::delete_case4(rbtree t, node n)
 
  */
 
-void RBTree::delete_case5(rbtree t, node n)
+void RBTree::delete_case5(rbtree t, Node n)
 
 {
 
@@ -1061,7 +1048,7 @@ void RBTree::delete_case5(rbtree t, node n)
 
  */
 
-void RBTree::delete_case6(rbtree t, node n)
+void RBTree::delete_case6(rbtree t, Node n)
 
 {
 
@@ -1135,7 +1122,7 @@ int compare_int(void* leftp, void* rightp)
 
  */
 
-void print_tree_helper(node n, int indent)
+void print_tree_helper(Node n, int indent)
 
 {
 

@@ -17,6 +17,19 @@ struct CEP {
 	CEP(std::string logradouro, int cep) :
 			logradouro(logradouro), cep(cep) {
 	}
+
 };
+
+bool operator>(CEP one, CEP another) {
+	return one.cep > another.cep;
+}
+
+bool operator<(CEP one, CEP another) {
+	return one.cep < another.cep;
+}
+
+bool operator==(CEP one, CEP another) {
+	return one.cep == another.cep;
+}
 
 #endif /* CEP_H_ */

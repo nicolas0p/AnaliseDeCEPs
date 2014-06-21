@@ -8,9 +8,7 @@
 #include <fstream>
 #include <stdlib.h>
 
-
 #include <iostream>
-
 
 #include "RBTree.h"
 #include "CEP.h"
@@ -36,7 +34,7 @@ RBTree<CEP> readFile(string fileName) {
 	return tree;
 }
 
+
 int main() {
-	RBTree<CEP> rbtree = readFile("df.txt");
-	cout << (string)rbtree.vector();
+	RBTree<CEP> tree;
 }
