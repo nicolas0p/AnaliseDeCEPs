@@ -36,8 +36,8 @@ timeval presentTime() {
 	return time;
 }
 
-void writeFile(ofstream& file, const string& toWrite) {
-	file << toWrite << "\n";
+void writeFile(ofstream *file, const string& toWrite) {
+	(*file) << toWrite << "\n";
 }
 
 long timeDifference(const timeval& begin, const timeval& end) {
@@ -54,11 +54,12 @@ long timeDifference(const timeval& begin, const timeval& end) {
 class RedBlack {
 public:
 	RedBlack() :
-			creator(), tree(creator.rbtree_create()), size_(0), file("rbtree.txt"), comparator(comp) {
+			creator(), tree(creator.rbtree_create()), size_(0), file(new ofstream("rbtree.txt")), comparator(comp) {
 	}
 
 	~RedBlack() {
-		file.close();
+		file->close();
+		delete file;
 	}
 
 	void insert(CEP data) {
@@ -70,9 +71,9 @@ public:
 
 		timeval end = presentTime();
 		long dif = timeDifference(begin, end);
-		//ostringstream ss;
-		//ss << size_ << " " << dif;
-		//writeFile(file, ss.str());
+		ostringstream ss;
+		ss << size_ << " " << dif;
+		writeFile(file, ss.str());
 	}
 
 	void remove(CEP key) {
@@ -89,7 +90,7 @@ private:
 	RBTree creator;
 	rbtree tree;
 	size_t size_;
-	ofstream file;
+	ofstream *file;
 	int (*comparator)(void* one, void* another);
 
 };
