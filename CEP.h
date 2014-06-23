@@ -18,6 +18,8 @@ struct CEP {
 			logradouro(logradouro), cep(cep) {
 	}
 
+	CEP(const CEP& cep) : logradouro(cep.logradouro), cep(cep.cep) {}
+
 };
 
 bool operator>(CEP one, CEP another) {
@@ -30,6 +32,12 @@ bool operator<(CEP one, CEP another) {
 
 bool operator==(CEP one, CEP another) {
 	return one.cep == another.cep;
+}
+
+std::ostream& operator<<(std::ostream& os, const CEP& cep)
+{
+	os << cep.logradouro;
+	return os;
 }
 
 #endif /* CEP_H_ */

@@ -15,16 +15,19 @@
 
 using namespace std;
 
-CEP createCEP(string line) {
+CEP createCEP(const string& line) {
 	int position = line.find('|');
 	string streetName = line.substr(0,position);
 	string stringNumber = line.substr(position+1,line.size()-position);
-	int number = atoi(stringNumber.c_str());
+	stringstream ss;
+	ss << stringNumber;
+	int number;/* = atoi(stringNumber.c_str());*/
+	ss >> number;
 	return CEP(streetName, number);
 }
 
-RBTree<CEP> readFile(string fileName) {
-	RBTree<CEP> tree;
+RedBlack readFile(string fileName) {
+	RedBlack tree;
 	ifstream file(fileName.c_str());
 	string line;
 	while( getline(file, line) ){
@@ -34,7 +37,6 @@ RBTree<CEP> readFile(string fileName) {
 	return tree;
 }
 
-
 int main() {
-	RBTree<CEP> tree;
+	RedBlack tree = readFile("df.txt");
 }

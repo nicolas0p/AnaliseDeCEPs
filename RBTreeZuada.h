@@ -112,6 +112,8 @@ public:
 
 	void delete_case6(rbtree t, Node n);
 
+	void print_tree(rbtree t);
+
 };
 
 /*
@@ -1168,7 +1170,7 @@ void print_tree_helper(Node n, int indent)
 
 }
 
-void print_tree(rbtree t)
+void RBTree::print_tree(rbtree t)
 
 {
 
