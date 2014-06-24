@@ -113,8 +113,6 @@ public:
 
 	void delete_case6(rbtree t, Node n);
 
-	void print_tree(rbtree t);
-
 };
 
 /*
@@ -1116,67 +1114,5 @@ int compare_int(void* leftp, void* rightp)
 		return 0;
 
 	}
-
-}
-
-/*
-
- * Print RBTRee
-
- */
-
-void print_tree_helper(Node n, int indent)
-
-{
-
-	int i;
-
-	if (n == NULL)
-
-	{
-
-		fputs("<empty tree>", stdout);
-
-		return;
-
-	}
-
-	if (n->right != NULL)
-
-	{
-
-		print_tree_helper(n->right, indent + INDENT_STEP);
-
-	}
-
-	for (i = 0; i < indent; i++)
-
-		fputs(" ", stdout);
-
-	if (n->color == BLACK)
-
-		cout << (intptr_t) n->key << endl;
-
-	else
-
-		cout << "<" << (intptr_t) n->key << ">" << endl;
-
-	if (n->left != NULL)
-
-	{
-
-		print_tree_helper(n->left, indent + INDENT_STEP);
-
-	}
-
-}
-
-void RBTree::print_tree(rbtree t)
-
-{
-
-	print_tree_helper(t->root, 0);
-
-	puts("");
 
 }

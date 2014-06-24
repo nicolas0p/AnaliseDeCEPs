@@ -16,15 +16,15 @@ using namespace std;
  *
  */
 
-struct avl_node
+struct avlnode
 
 {
 
 	int data;
 
-	struct avl_node *left;
+	struct avlnode *left;
 
-	struct avl_node *right;
+	struct avlnode *right;
 
 }*root;
 
@@ -34,37 +34,29 @@ struct avl_node
  *
  *           */
 
-class avlTree
+class AVLTree
 
 {
 
 public:
 
-	int height(avl_node *);
+	int height(avlnode *);
 
-	int diff(avl_node *);
+	int diff(avlnode *);
 
-	avl_node *rr_rotation(avl_node *);
+	avlnode *rr_rotation(avlnode *);
 
-	avl_node *ll_rotation(avl_node *);
+	avlnode *ll_rotation(avlnode *);
 
-	avl_node *lr_rotation(avl_node *);
+	avlnode *lr_rotation(avlnode *);
 
-	avl_node *rl_rotation(avl_node *);
+	avlnode *rl_rotation(avlnode *);
 
-	avl_node* balance(avl_node *);
+	avlnode* balance(avlnode *);
 
-	avl_node* insert(avl_node *, int);
+	avlnode* insert(avlnode *, int);
 
-	void display(avl_node *, int);
-
-	void inorder(avl_node *);
-
-	void preorder(avl_node *);
-
-	void postorder(avl_node *);
-
-	avlTree()
+	AVLTree()
 
 	{
 
@@ -80,7 +72,7 @@ public:
  *
  *           */
 
-int avlTree::height(avl_node *temp)
+int AVLTree::height(avlnode *temp)
 
 {
 
@@ -110,7 +102,7 @@ int avlTree::height(avl_node *temp)
  *
  *           */
 
-int avlTree::diff(avl_node *temp)
+int AVLTree::diff(avlnode *temp)
 
 {
 
@@ -130,11 +122,11 @@ int avlTree::diff(avl_node *temp)
  *
  *           */
 
-avl_node *avlTree::rr_rotation(avl_node *parent)
+avlnode *AVLTree::rr_rotation(avlnode *parent)
 
 {
 
-	avl_node *temp;
+	avlnode *temp;
 
 	temp = parent->right;
 
@@ -152,11 +144,11 @@ avl_node *avlTree::rr_rotation(avl_node *parent)
  *
  *           */
 
-avl_node *avlTree::ll_rotation(avl_node *parent)
+avlnode *AVLTree::ll_rotation(avlnode *parent)
 
 {
 
-	avl_node *temp;
+	avlnode *temp;
 
 	temp = parent->left;
 
@@ -174,11 +166,11 @@ avl_node *avlTree::ll_rotation(avl_node *parent)
  *
  *           */
 
-avl_node *avlTree::lr_rotation(avl_node *parent)
+avlnode *AVLTree::lr_rotation(avlnode *parent)
 
 {
 
-	avl_node *temp;
+	avlnode *temp;
 
 	temp = parent->left;
 
@@ -194,11 +186,11 @@ avl_node *avlTree::lr_rotation(avl_node *parent)
  *
  *           */
 
-avl_node *avlTree::rl_rotation(avl_node *parent)
+avlnode *AVLTree::rl_rotation(avlnode *parent)
 
 {
 
-	avl_node *temp;
+	avlnode *temp;
 
 	temp = parent->right;
 
@@ -214,7 +206,7 @@ avl_node *avlTree::rl_rotation(avl_node *parent)
  *
  *           */
 
-avl_node *avlTree::balance(avl_node *temp)
+avlnode *AVLTree::balance(avlnode *temp)
 
 {
 
@@ -258,7 +250,7 @@ avl_node *avlTree::balance(avl_node *temp)
  *
  *           */
 
-avl_node *avlTree::insert(avl_node *root, int value)
+avlnode *AVLTree::insert(avlnode *root, int value)
 
 {
 
@@ -266,7 +258,7 @@ avl_node *avlTree::insert(avl_node *root, int value)
 
 	{
 
-		root = new avl_node;
+		root = new avlnode;
 
 		root->data = value;
 
@@ -299,107 +291,5 @@ avl_node *avlTree::insert(avl_node *root, int value)
 	}
 
 	return root;
-
-}
-
-/*
- *
- *      * Display AVL Tree
- *
- *           */
-
-void avlTree::display(avl_node *ptr, int level)
-
-{
-
-	int i;
-
-	if (ptr != NULL)
-
-	{
-
-		display(ptr->right, level + 1);
-
-		printf("\n");
-
-		if (ptr == root)
-
-			cout << "Root -> ";
-
-		for (i = 0; i < level && ptr != root; i++)
-
-			cout << "        ";
-
-		cout << ptr->data;
-
-		display(ptr->left, level + 1);
-
-	}
-
-}
-
-/*
- *
- *      * Inorder Traversal of AVL Tree
- *
- *           */
-
-void avlTree::inorder(avl_node *tree)
-
-{
-
-	if (tree == NULL)
-
-		return;
-
-	inorder(tree->left);
-
-	cout << tree->data << "  ";
-
-	inorder(tree->right);
-
-}
-
-/*
- *
- *      * Preorder Traversal of AVL Tree
- *
- *           */
-
-void avlTree::preorder(avl_node *tree)
-
-{
-
-	if (tree == NULL)
-
-		return;
-
-	cout << tree->data << "  ";
-
-	preorder(tree->left);
-
-	preorder(tree->right);
-
-}
-
-/*
- *
- *      * Postorder Traversal of AVL Tree
- *
- *           */
-
-void avlTree::postorder(avl_node *tree)
-
-{
-
-	if (tree == NULL)
-
-		return;
-
-	postorder(tree->left);
-
-	postorder(tree->right);
-
-	cout << tree->data << "  ";
 
 }

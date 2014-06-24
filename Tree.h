@@ -50,7 +50,7 @@ long timeDifference(const timeval& begin, const timeval& end) {
 class Tree {
 public:
 
-	virtual ~Tree() = 0;
+	virtual ~Tree() {};
 
 	virtual void insert(CEP data) = 0;
 

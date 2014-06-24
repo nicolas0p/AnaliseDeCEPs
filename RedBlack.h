@@ -45,10 +45,6 @@ public:
 		creator.rbtree_delete(tree, (void*) info, comparator);
 	}
 
-	void print() {
-		creator.print_tree(tree);
-	}
-
 private:
 	RBTree creator;
 	rbtree tree;
