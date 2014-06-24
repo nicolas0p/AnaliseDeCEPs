@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-#include "RBTree.h"
+#include "RedBlack.h"
 #include "CEP.h"
 
 using namespace std;
